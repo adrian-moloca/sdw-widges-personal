@@ -11,9 +11,11 @@ interface Props {
   discipline: string;
 }
 export const MatchHeader: React.FC<Props> = ({ match, discipline }: Props) => {
+  if ( !match?.competitors) return null;
   const { getMasterDataValue } = useStoreCache();
   const isMobile = useMediaQuery((theme: any) => theme.breakpoints.down('md'));
   const disciplineName = getMasterDataValue(discipline, MasterData.Discipline)?.value ?? '';
+  
   const matchTitle = match?.competitors
     ?.map((competitor: any) => {
       const displayName = formatAthleteName(competitor);

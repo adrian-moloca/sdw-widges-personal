@@ -21,7 +21,7 @@ interface RowItem {
 export const JudgeScoringTable = ({ data, category }: Props) => {
   const theme = useTheme();
   const widgetConfig = useWidgetConfig();
-  if (!data) return null;
+  if (!data || data.criteria?.length === 0) return null;
   const criteria = category
     ? data.criteria.filter((x) => x.category === category.code)
     : data.criteria;
@@ -116,12 +116,16 @@ export const JudgeScoringTable = ({ data, category }: Props) => {
       arrive: round.arrive,
       goe: round.goe,
     };
-    criteria.forEach((e: CriteriaItem) => {
-      item[e.judge] = e.score;
-    });
-    criteria.forEach((e: CriteriaItem) => {
-      item[e.judge + '_Discarded'] = e.discarded;
-    });
+    criteria
+      .filter((x) => x.round == round.code)
+      .forEach((e: CriteriaItem) => {
+        item[e.judge] = e.score;
+      });
+    criteria
+      .filter((x) => x.round == round.code)
+      .forEach((e: CriteriaItem) => {
+        item[`${e.judge}_Discarded`] = e.discarded;
+      });
     return item;
   });
   return (

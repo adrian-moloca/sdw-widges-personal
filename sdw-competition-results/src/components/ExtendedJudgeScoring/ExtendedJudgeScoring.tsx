@@ -14,7 +14,7 @@ export const ExtendedJudgeScoring = ({ data }: Props) => {
       {judgeCriteria && (judgeCriteria.judges.length > 0 || judgeCriteria.rounds.length > 0) && (
         <JudgeScoringCard data={judgeCriteria} />
       )}
-      {judgeScore && (judgeScore.judges.length > 0 || judgeScore.rounds.length > 0) && (
+      {judgeScore && (judgeScore.judges.length > 0 || judgeScore.criteria.length > 0) && (
         <JudgeScoringCard data={judgeScore} />
       )}
     </>

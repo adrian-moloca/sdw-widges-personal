@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import { isNullOrEmpty } from 'helpers';
 import orderBy from 'lodash/orderBy';
 import { MatchHeader } from './components/MatchHeader';
+import { RoundCard } from 'controls/RoundCard/RoundCard';
 
 type Props = {
   data: any;
@@ -37,11 +38,13 @@ export const UnitMatchNavigation = ({ data, discipline, phaseType }: Props) => {
     const currentUnit = orderedData?.find((x: any) => x.id === unitId) ?? orderedData[0];
     return (
       <Grid container spacing={2}>
-        <MatchHeader match={currentUnit} discipline={discipline} />
-        <MatchResults data={orderedData} />
-        <Grid size={12}>
-          <UnitCard data={currentUnit} discipline={discipline} phaseType={phaseType} />
-        </Grid>
+        <RoundCard>
+          <MatchHeader match={currentUnit} discipline={discipline} />
+          <MatchResults data={orderedData} />
+          <Grid size={12}>
+            <UnitCard data={currentUnit} discipline={discipline} phaseType={phaseType} />
+          </Grid>
+        </RoundCard>
       </Grid>
     );
   }

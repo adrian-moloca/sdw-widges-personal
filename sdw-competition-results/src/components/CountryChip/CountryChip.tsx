@@ -10,7 +10,7 @@ export const CountryChip = (param: IIconChipProps) => {
   const matchDownSM = useMediaQuery((theme: any) => theme.breakpoints.down('md'));
   const { dataInfo } = useStoreCache();
   let countryCode = formatMasterCode(param.code);
-  if (['REF', 'IOP', 'AIN', 'EUN', 'IOA', 'XXB', 'FIS'].includes(countryCode)) {
+  if (['REF', 'IOP', 'AIN', 'EUN', 'IOA', 'XXB', 'FIS', 'MIX'].includes(countryCode)) {
     countryCode = 'EOR';
   }
   const countryEntry = dataInfo[MasterData.EventType].find((x: Entry) => x.key === param.code);
